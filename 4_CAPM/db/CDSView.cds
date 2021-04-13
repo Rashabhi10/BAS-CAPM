@@ -72,7 +72,7 @@ context CDSView {
                 }
                 where
                     a.PRODUCT_GUID.NODE_KEY = prod.NODE_KEY
-            )                 as PO_SUM
+            )                 as PO_SUM: Decimal(15, 2)
         };
 
     define view![ProductView] as
@@ -102,7 +102,7 @@ context CDSView {
             PO_ORDERS.CurrencyCode as![CurrencyCode],
             sum(
                 PO_ORDERS.GrossAmount
-            )                      as![POGrossAmount]
+            )                      as![POGrossAmount]: Decimal(15, 2)
         }
         group by
             ProductID,

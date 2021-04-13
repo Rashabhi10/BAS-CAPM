@@ -1,0 +1,9 @@
+{
+    "sqltools.connections": [
+        {
+            "dialect": "SQLite",
+            "name": "demoSQLite",
+            "database": "/home/user/projects/4_CAPM/rv.demo"
+        }
+    ]
+}
