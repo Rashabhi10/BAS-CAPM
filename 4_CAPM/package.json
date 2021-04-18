@@ -22,7 +22,7 @@
         "kind": "sqlite",
         "model": "*",
         "credentials": {
-          "database": "rv.demo"
+          "database": "rv.db"
         }
       }
     }

@@ -1,0 +1,39 @@
+GET http://localhost:4004/CatalogService
+
+###
+GET http://localhost:4004/CatalogService/$metadata
+
+###
+GET http://localhost:4004/CatalogService/EmployeesSet?$top=2
+
+###
+GET http://localhost:4004/CatalogService/Pohead?$top=2&$expand=Items,PARTNER_GUID
+
+###
+POST http://localhost:4004/CatalogService/EmployeesSet
+Content-Type: application/json
+
+{
+        "nameFirst"     : "Abhi",
+        "nameMiddle"    : "Jain",
+        "nameLast"      : "J",
+        "sex"           : "M",
+        "language"      : "E",
+        "phoneNumber"   : "9665611712",
+        "email"         : "abc@gmail.com",
+        "loginName"     : "abc",
+        "accountNumber" : "9866332323",
+        "bankName"      : "IDBC"
+}
+
+###IN V4 IT SHOULD BE GIVEN AS /bdc64530-b6fd-4903-8e1d-94bd92a20b68 ELSE ('bdc64530-b6fd-4903-8e1d-94bd92a20b68') FOR V2
+GET http://localhost:4004/CatalogService/EmployeesSet/82d82bd8-bad4-44aa-a5c1-873e2c4e6a24
+
+###
+PATCH http://localhost:4004/CatalogService/EmployeesSet/82d82bd8-bad4-44aa-a5c1-873e2c4e6a24
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "salaryAmount": "10000004",
+    "Currency_code": "INR"
+}
