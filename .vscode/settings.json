@@ -4,6 +4,11 @@
             "dialect": "SQLite",
             "name": "demoSQLite",
             "database": "/home/user/projects/4_CAPM/rv.demo"
+        },
+        {
+            "dialect": "SQLite",
+            "name": "flightModel",
+            "database": "/home/user/projects/5_CAPM/rv.db"
         }
     ]
 }
