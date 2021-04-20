@@ -60,8 +60,8 @@ DELETE http://localhost:4004/CRUDDemo/DeleteEmployeeSrv/73444e36-fd5a-4339-9425-
 GET http://localhost:4004/CatalogService/Pohead('74867AD200E41EDBA5D8B0C98DC28052')
 
 ###Read largest Order using ACTIONS
-POST http://localhost:4004/CatalogService/Pohead('74867AD200E41EDBA5D8B0C98DC28052')/CatalogService.boost
-Content-Type: application/json;IEEE754Compatible=true
+POST http://localhost:4004/CatalogService/Pohead('74867AD200E41EDBA5D8B0C98DC28052').boost
+
 
 ###
-GET http://localhost:4004/CatalogService/Pohead('74867AD200E41EDBA5D8B0C98DC28052')/CatalogService.largestOrder
+GET http://localhost:4004/CatalogService/largestOrder()
