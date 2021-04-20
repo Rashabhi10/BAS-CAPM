@@ -13,7 +13,7 @@ service CatalogService@(path:'/CatalogService') {
 
     entity POs @(
         title: '{i18n>poHeader}',
-        odata.draft.enabled: true
+        //odata.draft.enabled: true
     ) as projection on transaction.purchaseorder{
         *,
         round(GROSS_AMOUNT,2) as GROSS_AMOUNT: Decimal(15,2),

@@ -10,7 +10,7 @@ module.exports = cds.service.impl(async function () {
         }
     })
 
-     this.on('boost', async req => {
+     this.on("boost", async req => {
         try {
             const ID = req.params[0];
             console.log("Your Purchase order with ID ---> " + ID + " will be Boosted");

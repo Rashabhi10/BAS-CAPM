@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^4",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
     "express": "^4",
     "node-pre-gyp": "^0.17.0"
   },
