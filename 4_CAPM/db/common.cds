@@ -1,4 +1,6 @@
 namespace rv.common;
+using { Currency } from '@sap/cds/common';
+
 
 type Gender : String(1) enum {
     male         = 'M';
@@ -14,7 +16,7 @@ type AmountT : Decimal(15, 2)@(
 );
 
 aspect Amount {
-    CURRENCY_CODE : String(4);
+    CURRENCY : Currency;
     GROSS_AMOUNT  : AmountT;
     NET_AMOUNT    : AmountT;
     TAX_AMOUNT    : AmountT;

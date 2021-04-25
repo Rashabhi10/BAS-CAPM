@@ -16,7 +16,7 @@ context CDSView {
                 GROSS_AMOUNT                      as![GrossAmount],
                 NET_AMOUNT                        as![NetAmount],
                 TAX_AMOUNT                        as![TaxAmount],
-                CURRENCY_CODE                     as![CurrencyCode],
+                CURRENCY                          as![CurrencyCode],
                 LIFECYCLE_STATUS                  as![POStatus],
             key Items.PO_ITEM_POS                 as![POItem],
                 Items.PRODUCT_GUID.PRODUCT_ID     as![ProductID],
@@ -53,7 +53,7 @@ context CDSView {
         select from transaction.poitems {
             PARENT_KEY.PARTNER_GUID.NODE_KEY as![Partner],
             PRODUCT_GUID.NODE_KEY            as![ProductID],
-            CURRENCY_CODE                    as![CurrencyCode],
+            CURRENCY                         as![CurrencyCode],
             NET_AMOUNT                       as![NetAmount],
             GROSS_AMOUNT                     as![GrossAmount],
             TAX_AMOUNT                       as![TaxAmount],

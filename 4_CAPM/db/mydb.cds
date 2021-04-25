@@ -26,18 +26,6 @@ context master {
             COMPANY_NAME  : String(250);
     }
 
-    annotate bp with {
-        NODE_KEY    @title : '{i18n>bp_key}';
-        BP_ROLE     @title : '{i18n>bp_role}';
-        BP_EMAIL    @title : '{i18n>bp_email}';
-        BP_PHONE    @title : '{i18n>bp_phone}';
-        BP_FAX      @title : '{i18n>bp_fax}';
-        bp_web      @title : '{i18n>bp_web}';
-        bp_add_guid @title : '{i18n>bp_add_guid}';
-        BP_ID       @title : '{i18n>bp_id}';
-        BP_COMPANY  @title : '{i18n>bp_company}';
-    };
-
     entity address {
         key NODE_KEY       : Guid;
             CITY           : String(44);
@@ -101,8 +89,8 @@ context master {
 }
 
 context transaction {
-    entity purchaseorder : common.Amount {
-        key NODE_KEY         : Guid;
+    entity purchaseorder : common.Amount, cuid {
+        //key NODE_KEY         : Guid;
             PO_ID            : String(24);
             PARTNER_GUID     : Association to master.bp;
             LIFECYCLE_STATUS : String(1);
@@ -112,8 +100,8 @@ context transaction {
             NOTE: String(50);
     }
 
-    entity poitems : common.Amount {
-        key NODE_KEY     : Guid;
+    entity poitems : common.Amount, cuid {
+        // key NODE_KEY     : Guid;
             PARENT_KEY   : Association to purchaseorder;
             PO_ITEM_POS  : Integer;
             PRODUCT_GUID : Association to master.product;

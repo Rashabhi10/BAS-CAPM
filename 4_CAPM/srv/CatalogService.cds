@@ -11,7 +11,11 @@ service CalatogService @(path : '/CatalogService') {
     // entity prodtextSet      as projection on master.prodtext;
     entity ProductSet                          as projection on master.product;
 
-    entity Pohead @(title : '{i18n>pohead}')   as projection on transaction.purchaseorder {
+
+    entity Pohead @(
+        title               : '{i18n>pohead}',
+        odata.draft.enabled : true
+    )                                          as projection on transaction.purchaseorder {
         * , round(
             GROSS_AMOUNT, 2
         ) as GROSS_AMOUNT : Decimal(15, 2), 
@@ -43,7 +47,6 @@ service CalatogService @(path : '/CatalogService') {
             then
                 3
         end as Criticality : Integer,
-
         Items             : redirected to POitems
     } actions {
         function largestOrder() returns array of Pohead;

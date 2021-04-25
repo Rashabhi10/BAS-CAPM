@@ -1,7 +1,7 @@
 {
-    "_version": "1.32.0",
+    "_version": "1.31.0",
     "sap.app": {
-        "id": "rv.app.purchaseorderapp",
+        "id": "anubhav.app.purchaseorderapp",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -23,6 +23,21 @@
         "sourceTemplate": {
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "anubhav-app-purchaseorderapp-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "PurchaseOrder",
+                    "action": "manage",
+                    "title": "Manage Purchase Order",
+                    "subTitle": "anubhavtrainings.com",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {
@@ -50,7 +65,8 @@
             "minUI5Version": "1.76.0",
             "libs": {
                 "sap.ui.core": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "models": {
@@ -73,33 +89,42 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "PoheadList",
-                    "target": "PoheadList"
+                    "name": "POsList",
+                    "target": [
+                        "POsList"
+                    ]
                 },
                 {
-                    "pattern": "Pohead({key}):?query:",
-                    "name": "PoheadObjectPage",
-                    "target": "PoheadObjectPage"
+                    "pattern": "POs({key}):?query:",
+                    "name": "POsObjectPage",
+                    "target": [
+                        "POsList",
+                        "POsObjectPage"
+                    ]
                 },
                 {
-                    "pattern": "Pohead({key})/Items({key2}):?query:",
-                    "name": "POitemsObjectPage",
-                    "target": "POitemsObjectPage"
+                    "pattern": "POs({key})/Items({key2}):?query:",
+                    "name": "POItemsObjectPage",
+                    "target": [
+                        "POsList",
+                        "POsObjectPage",
+                        "POItemsObjectPage"
+                    ]
                 }
             ],
             "targets": {
-                "PoheadList": {
+                "POsList": {
                     "type": "Component",
-                    "id": "PoheadList",
+                    "id": "POsList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Pohead",
+                            "entitySet": "POs",
                             "variantManagement": "Page",
                             "navigation": {
-                                "Pohead": {
+                                "POs": {
                                     "detail": {
-                                        "route": "PoheadObjectPage"
+                                        "route": "POsObjectPage"
                                     }
                                 }
                             },
@@ -107,51 +132,68 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
-                                        "type": "ResponsiveTable",
                                         "selectionMode": "Single",
-                                        "selectAll": true,
                                         "selectionLimit": 10
                                     }
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
-                "PoheadObjectPage": {
+                "POsObjectPage": {
                     "type": "Component",
-                    "id": "PoheadObjectPage",
+                    "id": "POsObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Pohead",
+                            "entitySet": "POs",
                             "navigation": {
                                 "Items": {
                                     "detail": {
-                                        "route": "POitemsObjectPage"
+                                        "route": "POItemsObjectPage"
                                     }
                                 }
                             },
                             "content": {}
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/POs({key})"
                 },
-                "POitemsObjectPage": {
+                "POItemsObjectPage": {
                     "type": "Component",
-                    "id": "POitemsObjectPage",
+                    "id": "POItemsObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "POitems",
+                            "entitySet": "POItems",
                             "navigation": {},
                             "content": {}
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/POs({key})/Items({key2})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
         },
         "contentDensities": {
             "compact": true,
             "cozy": true
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.platform.abap": {
