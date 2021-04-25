@@ -12,6 +12,7 @@
     "node-pre-gyp": "^0.17.0"
   },
   "devDependencies": {
+    "@sap/ux-specification": "^1.84.9",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -27,5 +28,10 @@
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/purchaseorderapp",
+    "app/purchaseorderapp",
+    "app/purchaseorderapp"
+  ]
 }
