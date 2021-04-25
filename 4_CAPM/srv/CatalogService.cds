@@ -6,7 +6,7 @@ using {
 service CalatogService @(path : '/CatalogService') {
 
     entity AddressSet                          as projection on master.address;
-    entity BpSet                               as projection on master.bp;
+    entity BPSet                               as projection on master.bp;
     entity EmployeesSet                        as projection on master.employees;
     // entity prodtextSet      as projection on master.prodtext;
     entity ProductSet                          as projection on master.product;

@@ -1,5 +1,7 @@
 // using CalatogService as service from '../../srv/CatalogService';
-using {CalatogService.Pohead, CalatogService.POitems, CalatogService.BpSet} from '../../srv/CatalogService';
+
+
+using {CalatogService.Pohead, CalatogService.POitems, CalatogService.BPSet} from '../../srv/CatalogService';
 
 annotate CatalogService.Pohead with {
     PARTNER_GUID@(
@@ -11,13 +13,29 @@ annotate CatalogService.Pohead with {
 };
 
 @cds.odata.valuelist
-annotate CatalogService.BpSet with @(
+annotate CatalogService.BPSet with @(
     UI.Identification:[{
         $Type : 'UI.DataField',
         Value : COMPANY_NAME,
     }]
 );
 
+annotate CatalogService.POItems with {
+    PRODUCT_GUID@(
+        Common:{
+            Text: PRODUCT_GUID.DESCRIPTION
+        },
+        ValueList.entity: CatalogService.ProductSet
+    )
+};
+
+@cds.odata.valuelist
+annotate CatalogService.ProductSet with @(
+    UI.Identification:[{
+        $Type : 'UI.DataField',
+        Value : DESCRIPTION,
+    }]
+);
 
 annotate CalatogService.Pohead with @(
     UI : {
@@ -108,19 +126,11 @@ annotate CalatogService.Pohead with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : PARTNER_GUID_NODE_KEY,
+                Value : PARTNER_GUID_NODE_KEY, 
             },
             {
                 $Type : 'UI.DataField',
                 Value : PARTNER_GUID.COMPANY_NAME,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PARTNER_GUID.ADDRESS_GUID.COUNTRY,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PARTNER_GUID.ADDRESS_GUID.CITY,
             },
             {
                 $Type : 'UI.DataField',
@@ -160,6 +170,14 @@ annotate CalatogService.POitems with @(
             },
             {
                 $Type : 'UI.DataField',
+                Value : PRODUCT_GUID_NODE_KEY,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PRODUCT_GUID.PRODUCT_ID,
+            },
+            {
+                $Type : 'UI.DataField',
                 Value : TAX_AMOUNT,
             },
             {
@@ -173,10 +191,6 @@ annotate CalatogService.POitems with @(
             {
                 $Type : 'UI.DataField',
                 Value : CURRENCY.code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PRODUCT_GUID.PRODUCT_ID,
             },
             {
                 $Type : 'UI.DataField',
@@ -205,7 +219,7 @@ annotate CalatogService.POitems with @(
             {
                 $Type : 'UI.ReferenceFacet',
                 Label : 'Product Detail',
-                Target : 'PRODUCT_GUID/@UI.FieldGroup#ProductDetail',
+                Target : '@UI.FieldGroup#ProductDetail',
             },
         ],
 
@@ -215,6 +229,10 @@ annotate CalatogService.POitems with @(
                     {
                         $Type : 'UI.DataField',
                         Value : PO_ITEM_POS,
+                    },
+                    {
+                        $Type : 'UI.DataField',
+                        Value : PRODUCT_GUID_NODE_KEY,
                     },
                     {
                         $Type : 'UI.DataField',
@@ -242,46 +260,40 @@ annotate CalatogService.POitems with @(
                     },
             ]
         },
-    }
-);
-
-
-annotate CalatogService.ProductSet with @(
-    UI :{
         FieldGroup#ProductDetail : {
             $Type : 'UI.FieldGroupType',
             Data  : [
             {
                 $Type : 'UI.DataField',
-                Value : NODE_KEY,
+                Value : PRODUCT_GUID.NODE_KEY,
             },
             {
                 $Type : 'UI.DataField',
-                Value : PRODUCT_ID,
+                Value : PRODUCT_GUID.PRODUCT_ID,
             },
             {
                 $Type : 'UI.DataField',
-                Value : DESCRIPTION,
+                Value : PRODUCT_GUID.DESCRIPTION,
             },
             {
                 $Type : 'UI.DataField',
-                Value : TYPE_CODE,
+                Value : PRODUCT_GUID.TYPE_CODE,
             },
             {
                 $Type : 'UI.DataField',
-                Value : SUPPLIER_GUID.COMPANY_NAME,
+                Value : PRODUCT_GUID.SUPPLIER_GUID.COMPANY_NAME,
             },
             {
                 $Type : 'UI.DataField',
-                Value : PRICE,
+                Value : PRODUCT_GUID.PRICE,
             },
             {
                 $Type : 'UI.DataField',
-                Value : MEASURE_UNIT,
+                Value : PRODUCT_GUID.MEASURE_UNIT,
             },
         ],
         },
+
     }
 );
-
 
