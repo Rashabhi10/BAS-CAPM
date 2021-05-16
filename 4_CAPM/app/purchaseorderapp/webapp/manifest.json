@@ -108,9 +108,7 @@
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
                                         "type": "ResponsiveTable",
-                                        "selectionMode": "Single",
-                                        "selectAll": true,
-                                        "selectionLimit": 10
+                                        "selectionMode": "Single"
                                     }
                                 }
                             }

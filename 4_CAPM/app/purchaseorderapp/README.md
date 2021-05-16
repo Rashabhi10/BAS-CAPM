@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Sat Apr 24 2021 06:48:22 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Sun Apr 25 2021 15:37:36 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori|
 |**App Generator Version**<br>1.1.9|
 |**Generation Platform**<br>SAP Business Application Studio|
@@ -9,7 +9,7 @@
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>/CatalogService/
 |**Module Name**<br>purchaseorderapp|
-|**Application Title**<br>Manage PO|
+|**Application Title**<br>Manage Purchase Order|
 |**Namespace**<br>rv.app|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>Latest|
@@ -19,7 +19,7 @@
 
 ## purchaseorderapp
 
-A Fiori application.
+My Purchase Order Application
 
 ### Starting the generated app
 

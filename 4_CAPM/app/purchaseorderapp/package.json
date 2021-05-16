@@ -1,7 +1,7 @@
 {
     "name": "purchaseorderapp",
     "version": "0.0.1",
-    "description": "A Fiori application.",
+    "description": "My Purchase Order Application",
     "keywords": [
         "ui5",
         "openui5",

@@ -3,14 +3,15 @@ using {
     rv.demo.transaction
 } from '../db/mydb';
 
-service CalatogService @(path : '/CatalogService') {
+service CatalogService @(path : '/CatalogService') {
 
     entity AddressSet                          as projection on master.address;
-    entity BPSet                               as projection on master.bp;
+    @Capabilities : { Insertable,Updatable,Deletable }
     entity EmployeesSet                        as projection on master.employees;
     // entity prodtextSet      as projection on master.prodtext;
     entity ProductSet                          as projection on master.product;
-
+    @readonly
+    entity BPSet                               as projection on master.bp;
 
     entity Pohead @(
         title               : '{i18n>pohead}',

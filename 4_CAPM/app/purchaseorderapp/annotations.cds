@@ -1,7 +1,4 @@
-// using CalatogService as service from '../../srv/CatalogService';
-
-
-using {CalatogService.Pohead, CalatogService.POitems, CalatogService.BPSet} from '../../srv/CatalogService';
+using CatalogService as service from '../../srv/CatalogService';
 
 annotate CatalogService.Pohead with {
     PARTNER_GUID@(
@@ -20,7 +17,7 @@ annotate CatalogService.BPSet with @(
     }]
 );
 
-annotate CatalogService.POItems with {
+annotate CatalogService.POitems with {
     PRODUCT_GUID@(
         Common:{
             Text: PRODUCT_GUID.DESCRIPTION
@@ -37,7 +34,7 @@ annotate CatalogService.ProductSet with @(
     }]
 );
 
-annotate CalatogService.Pohead with @(
+annotate CatalogService.Pohead with @(
     UI : {
     SelectionFields : [
             PO_ID,
@@ -61,7 +58,7 @@ annotate CalatogService.Pohead with @(
     {
         $Type:'UI.DataFieldForAction',
         Label: 'Boost',
-        Action : 'CalatogService.boost',
+        Action : 'CatalogService.boost',
         Inline:true
     },
     {
@@ -161,7 +158,7 @@ annotate CalatogService.Pohead with @(
 });
 
 
-annotate CalatogService.POitems with @(
+annotate CatalogService.POitems with @(
     UI: {
         LineItem  : [
             {
@@ -191,10 +188,6 @@ annotate CalatogService.POitems with @(
             {
                 $Type : 'UI.DataField',
                 Value : CURRENCY.code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PRODUCT_GUID.SUPPLIER_GUID.COMPANY_NAME,
             },
         ],
         HeaderInfo  : {
@@ -236,10 +229,6 @@ annotate CalatogService.POitems with @(
                     },
                     {
                         $Type : 'UI.DataField',
-                        Value : PRODUCT_GUID.SUPPLIER_GUID.COMPANY_NAME,
-                    },
-                    {
-                        $Type : 'UI.DataField',
                         Value : PRODUCT_GUID.DESCRIPTION,
                     },
                     {
@@ -278,10 +267,6 @@ annotate CalatogService.POitems with @(
             {
                 $Type : 'UI.DataField',
                 Value : PRODUCT_GUID.TYPE_CODE,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : PRODUCT_GUID.SUPPLIER_GUID.COMPANY_NAME,
             },
             {
                 $Type : 'UI.DataField',
