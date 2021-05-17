@@ -39,17 +39,13 @@ annotate CatalogService.Pohead with @(
     SelectionFields : [
             PO_ID,
             GROSS_AMOUNT,
+            LIFECYCLE_STATUS,
             CURRENCY.code,
-            LIFECYCLE_STATUS
     ],
     LineItem        : [
     {
         $Type : 'UI.DataField',
         Value : PO_ID
-    },
-    {
-        $Type : 'UI.DataField',
-        Value : TAX_AMOUNT
     },
     {
         $Type:'UI.DataField',

@@ -118,10 +118,6 @@ const mysrvdemo = function(srv){
         return returnData;
 
     });
-
-
-
-
 }
 
 module.exports = mysrvdemo;``

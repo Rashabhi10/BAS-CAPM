@@ -6,8 +6,10 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap/approuter": "^10.2.0",
     "@sap/cds": "^4",
     "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
+    "@sap/hana-client": "^2.6.61",
     "express": "^4",
     "node-pre-gyp": "^0.17.0"
   },
@@ -19,9 +21,12 @@
     "start": "cds run"
   },
   "cds": {
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
     "requires": {
       "db": {
-        "kind": "sqlite",
+        "kind": "sql",
         "model": "*",
         "credentials": {
           "database": "rv.demo"

@@ -97,7 +97,7 @@ context CDSView {
 
     define view![CProductView] as
         select from ProductView {
-            PartnerID              as![ProductID],
+            ProductID              as![ProductID],
             Country                as![Country],
             PO_ORDERS.CurrencyCode as![CurrencyCode],
             round(sum(

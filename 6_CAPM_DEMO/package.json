@@ -1,30 +1,31 @@
 {
-  "name": "6_CAPM_DEMO",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "sqlite3": "^5.0.2"
-  },
-  "scripts": {
-    "start": "cds run"
-  },
-  "cds": {
-    "requires": {
-      "db": {
-        "kind": "sqlite",
-        "model": "*",
-        "credentials": {
-          "database": "anubhav.db"
+    "name": "6_CAPM_DEMO",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^4",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
+        "express": "^4",
+        "@sap/hana-client": "^2.6.61"
+    },
+    "devDependencies": {
+        "sqlite3": "^5.0.2"
+    },
+    "scripts": {
+        "start": "cds run"
+    },
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "sql",
+                "model": "*",
+                "credentials": {
+                    "database": "anubhav.db"
+                }
+            }
         }
-      }
     }
-  }
 }
