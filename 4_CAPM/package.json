@@ -10,8 +10,11 @@
     "@sap/cds": "^4",
     "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
     "@sap/hana-client": "^2.6.61",
+    "@sap/xsenv": "^3.1.0",
+    "@sap/xssec": "^3.2.0",
     "express": "^4",
-    "node-pre-gyp": "^0.17.0"
+    "node-pre-gyp": "^0.17.0",
+    "passport": "^0.4.1"
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.84.9",
@@ -25,8 +28,43 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "auth": {
+        "[production]": {
+          "strategy": "JWT"
+        },
+        "[development]": {
+          "strategy": "mock",
+          "users": {
+            "rashmi": {
+              "roles": [
+                "Admin",
+                "Viewer"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  "$UNRESTRICTED"
+                ]
+              }
+            },
+            "ramya": {
+              "roles": [
+                "Viewer"
+              ],
+              "userAttributes": {
+                "BankName": [
+                  "My Bank of London",
+                  "My Bank of Antioch"
+                ]
+              }
+            }
+          }
+        }
+      },
       "db": {
-        "kind": "sql",
+        "kind": "sqlite",
         "model": "*",
         "credentials": {
           "database": "rv.demo"

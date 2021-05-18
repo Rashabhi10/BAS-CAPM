@@ -3,13 +3,31 @@ using {
     rv.demo.transaction
 } from '../db/mydb';
 
-service CatalogService @(path : '/CatalogService') {
+service CatalogService @(path : '/CatalogService') 
+@(requires: 'authenticated-user') {
 
     entity AddressSet                          as projection on master.address;
-    @Capabilities : { Insertable,Updatable,Deletable }
-    entity EmployeesSet                        as projection on master.employees;
+
+    @Capabilities : {
+        Insertable,
+        Updatable,
+        Deletable
+    }
+    entity EmployeesSet  @(restrict:[
+        {
+            grant: ['READ'],
+            to: 'Viewer',
+            where: 'bankName = $user.BankName'
+        },
+        {
+            grant: ['WRITE'],
+            to: 'Admin'
+        }
+    ])                          as projection on master.employees;
+
     // entity prodtextSet      as projection on master.prodtext;
     entity ProductSet                          as projection on master.product;
+
     @readonly
     entity BPSet                               as projection on master.bp;
 
@@ -19,36 +37,33 @@ service CatalogService @(path : '/CatalogService') {
     )                                          as projection on transaction.purchaseorder {
         * , round(
             GROSS_AMOUNT, 2
-        ) as GROSS_AMOUNT : Decimal(15, 2), 
-        case LIFECYCLE_STATUS
-            when
-                'N'
-            then
-                'New'
-            when
-                'D'
-            then
-                'Delivered'
-            when
-                'B'
-            then
-                'Blocked'
-        end as LIFECYCLE_STATUS : String(20), 
-        case LIFECYCLE_STATUS
-            when
-                'N'
-            then
-                2
-            when
-                'D'
-            then
-                1
-            when
-                'B'
-            then
-                3
-        end as Criticality : Integer,
-        Items             : redirected to POitems
+        ) as GROSS_AMOUNT : Decimal(15, 2), case LIFECYCLE_STATUS
+                                                when
+                                                    'N'
+                                                then
+                                                    'New'
+                                                when
+                                                    'D'
+                                                then
+                                                    'Delivered'
+                                                when
+                                                    'B'
+                                                then
+                                                    'Blocked'
+                                            end as LIFECYCLE_STATUS : String(20), case LIFECYCLE_STATUS
+                                                                                      when
+                                                                                          'N'
+                                                                                      then
+                                                                                          2
+                                                                                      when
+                                                                                          'D'
+                                                                                      then
+                                                                                          1
+                                                                                      when
+                                                                                          'B'
+                                                                                      then
+                                                                                          3
+                                                                                  end as Criticality : Integer, Items : redirected to POitems
     } actions {
         function largestOrder() returns array of Pohead;
         action boost();
